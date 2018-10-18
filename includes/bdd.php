@@ -1,7 +1,7 @@
 <?php
-function openCon(){
-    $config=parse_ini_file('databases.ini');
-    
+
+function openCon($ini_file){
+    $config=parse_ini_file($ini_file);
     $conexion=new mysqli(
         $config['NOMSERVER'],
         $config['USER'],

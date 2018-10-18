@@ -8,7 +8,7 @@ $contra = $_POST['password'];
 include_once 'includes/bdd.php';
 
 //Guardamos la conexion en una variable
-$con = openCon();
+$con = openCon('databases.ini');
 
 //Los datos viajan en utf8
 $con -> set_charset('utf8');
@@ -32,7 +32,7 @@ if($row['count(*)'] == 0){
 
 	echo "<h1 style='text-align:center'>Ingreso invalido del sistema</h1>";
 	echo "<br>";
-	echo "<a style='text-align:center' href='index.html'>Volver a Intentarlo</a>";
+	echo "<a style='text-align:center' href='form_login.html'>Volver a Intentarlo</a>";
 
 }
 
