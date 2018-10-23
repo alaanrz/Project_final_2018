@@ -43,8 +43,8 @@ form {
 					<div class="form-group">
 						<label class="control-label" for="marca">MARCA</label> <select
 							name="marca" id="marca" class="form-control">
-							<option value="" disabled="disabled" selected="selected">Seleccione
-								marca</option>
+							<option value="" disabled="disabled" selected="selected">--Seleccione
+								marca--</option>
 						<?php
     header('Content-Type: text/html;charset=UTF-8');
     include_once "includes/bdd.php";
@@ -58,6 +58,34 @@ form {
 
 ?>
 						</select>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="color">COLOR</label> <select
+							name="color" id="color" class="form-control">
+							<option value="" disabled="disabled" selected="selected">--Seleccione
+								color--</option>
+						<?php
+    header('Content-Type: text/html;charset=UTF-8');
+    include_once "includes/bdd.php";
+    $con = openCon('databases_productos.ini');
+    $con->set_charset("utf8");
+    $sql = "SELECT id_color,descripcion FROM colores ORDER BY descripcion";
+    $result = $con -> query($sql);
+    while ($row=$result -> fetch_assoc()){
+        echo '<option value=" ' . $row['id_color'] . ' ">'  .$row['descripcion']. '</option>';
+    };
+
+?>
+						</select>
+					</div>
+					<div class="form-group">
+					<br />
+					<label for="file">Seleccione la imagen a subir</label>
+					<input type="file"  id="imagen" name="imagen" class="form-control" size="30"/>
+					</div>
+					<div class="text-center">
+					<br />
+					<input type="submit"  class="btn btn-success" value="Agregar Producto"/>
 					</div>
 				</form>
 			</div>
