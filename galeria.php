@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -129,6 +130,41 @@ footer hr {
 </header>
 <section id="main">
   <!-- Contenido principal de la galeria -->
+  <ul class="gallery">
+  <?php
+header('Content-Type: text/html;charset=UTF-8');
+ include_once "includes/bdd.php";
+ $con = openCon('databases_productos.ini');
+ $con->set_charset("utf8");
+
+$sql="SELECT 
+z.modelo AS modelo,
+z.precio AS precio,
+z.imagen AS imagen,
+z.observacion AS observacion,
+c.descripcion AS color,
+m.descripcion AS marca
+FROM zapatillas z
+INNER JOIN colores c
+ON c.id_color=z.id_color
+INNER JOIN marcas m
+ON m.id_marca=z.id_marca";
+$result=$con->query($sql);
+while($row=$result->fetch_assoc()){
+?>
+  <li>
+  <div class="box">
+  <figure>
+  <img src="<?php echo $row['imagen'] ?>" alt="" />
+  <figcaption></figcaption>
+  </figure>
+  </div>
+  </li>
+<?php
+}
+?>
+
+  </ul>
 </section>
 <footer>
   <hr>
