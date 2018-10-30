@@ -7,7 +7,7 @@ if($_SESSION['logueado']==true){
   $obs=$_POST['observacion'];
   $marca=$_POST['marca'];
   $color=$_POST['color'];
- $img=$_POST['imagen'];
+  /*$img=$_POST['imagen'];*/
  
  header('Content-Type: text/html;charset=UTF-8');
  include_once "includes/bdd.php";
@@ -16,6 +16,17 @@ if($_SESSION['logueado']==true){
  
  
  $sql="INSERT INTO zapatillas(modelo,precio,observacion,id_marca,id_color,imagen) VALUES(?,?,?,?,?,?)";
+ $stmt=$con->prepare($sql);
+ $ruta_img=$directorio.$nombre_img;
+ $stmt->bind_param("sdsiis",$modelo,$precio,$obs,$marca,$color,$ruta_img);
+ if($stmt->execute()){
+ ?>
+<script >
+alert('Producto Ingresado');
+window.location="form_insert.php";
+</script>
+<?php 
+ }
 }
 else {
     header("location:form_login.html");
