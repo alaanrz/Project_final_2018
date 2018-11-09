@@ -12,6 +12,9 @@ function deleteProducto(cod_zapatilla){
 		}
 ;
 }
+function editProducto(cod_zapatilla){
+	document.location.href="edit.php?q="+cod_zapatilla;
+	}
 </script>
 </head>
 <body>
@@ -26,6 +29,7 @@ function deleteProducto(cod_zapatilla){
 				<th>Precio</th>
 				<th>Color</th>
 				<th>Eliminar</th>
+				<th>Actualizar</th>
 </tr>
 		</thead>
 		<tbody>
@@ -56,7 +60,7 @@ while($row=$result->fetch_assoc()){
 				<td><?php echo $row['precio'] ?></td>
 				<td><?php echo $row['color'] ?></td>
 				<td><a href="#" onclick="deleteProducto(<?php echo $row['id'] ?>)">Eliminar Producto</a></td>
-
+                <td><a href="#" onclick="editProducto(<?php echo $row['id'] ?>)">Editar Producto</a></td>
 			</tr>
 			<?php
 }
