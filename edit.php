@@ -5,9 +5,7 @@ if (isset($_GET['q'])){
     include_once "includes/bdd.php";
     $con = openCon('databases_productos.ini');
     $con->set_charset("utf8");
-}
-?>
-$sql=SELECT 
+    $sql="SELECT 
 z.id_zapatilla,
 z.modelo,
 z.precio,
@@ -18,4 +16,7 @@ FROM zapatillas z INNER JOIN colores c ON
 z.id_color=c.id_color
 INNER JOIN marcas m ON
 z.id_marca=m.id_marca
-WHERE z.id_zapatilla=7
+WHERE z.id_zapatilla=".$id;
+    $result=$con -> query($sql);
+}
+?>
