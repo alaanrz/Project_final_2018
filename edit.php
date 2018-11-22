@@ -11,7 +11,9 @@ z.modelo as modelo,
 z.precio as precio,
 z.observacion as observacion,
 c.descripcion as color,
-m.descripcion as marca
+m.descripcion as marca,
+m.id_marca as id_marca,
+c.id_color as id_color
 FROM zapatillas z INNER JOIN colores c ON
 z.id_color=c.id_color
 INNER JOIN marcas m ON
@@ -67,8 +69,8 @@ form {
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="marca">MARCA</label> <select
-							name="marca" id="marca" class="form-control">
-							<option value="" disabled="disabled" selected="selected"><?php echo $row['marca']?></option>
+							name="marca" id="marca" class="form-control" >
+							
 						<?php
     header('Content-Type: text/html;charset=UTF-8');
     include_once "includes/bdd.php";
@@ -76,6 +78,7 @@ form {
     $con->set_charset("utf8");
     $sql = "SELECT id_marca,descripcion FROM marcas ORDER BY descripcion";
     $result = $con -> query($sql);
+    echo '<option value="' . $row['id_marca'] . '" >' .$row['marca'].'</option>';
     while ($row_marca=$result -> fetch_assoc()){
         echo '<option value=" ' . $row_marca['id_marca'] . ' ">'  .$row_marca['descripcion']. '</option>';
     };
@@ -85,8 +88,8 @@ form {
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="color">COLOR</label> <select
-							name="color" id="color" class="form-control">
-							<option value="" disabled="disabled" selected="selected"><?php echo $row['color']?></option>
+							name="color" id="color" class="form-control" >
+							
 						<?php
     header('Content-Type: text/html;charset=UTF-8');
     include_once "includes/bdd.php";
@@ -94,7 +97,9 @@ form {
     $con->set_charset("utf8");
     $sql = "SELECT id_color,descripcion FROM colores ORDER BY descripcion";
     $result = $con -> query($sql);
+    echo '<option value=" ' . $row['id_color'] . ' " >' .$row['color'].'</option>';
     while ($row_color=$result -> fetch_assoc()){
+        
         echo '<option value=" ' . $row_color['id_color'] . ' ">'  .$row_color['descripcion']. '</option>';
     };
 
